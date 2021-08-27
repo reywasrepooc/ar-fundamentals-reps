@@ -79,4 +79,52 @@ describe Donation do
       expect(cooper_alexs.nonprofit).to eq(alexs)
     end
   end
+
+  describe "querying fundamentals" do
+    it "`Donation.get_last_3` returns the last 3 donations in the database" do
+      expect(Donation.get_last_3).to eq([jelena_streetdog, kurstyn_streetdog, sebastian_streetdog])
+    end
+
+    it "`Donation.get_id_of_2` returns the donation with the `id` of 2" do
+      expect(Donation.get_id_of_2).to eq(dion_alexs)
+    end
+
+    it "`Donation.get_from_first_user` returns the donations with a `user_id` of 1" do
+      expect(Donation.get_from_first_user).to eq([cooper_alexs, cooper_blm, cooper_hope])
+    end
+
+    it "`Donation.get_id_of_18` returns the donation with an `id` of 18" do
+      expect(Donation.get_id_of_18).to eq(gillian_blm)
+    end
+
+    it "`Donation.get_from_last_nonprofit` returns all donations made to the last `Nonprofit` in the database" do
+      expect(Donation.get_from_last_nonprofit).to eq([erica_streetdog, gordon_streetdog, jelena_streetdog, kurstyn_streetdog, sebastian_streetdog])
+    end
+
+    it "`Donation.order_by_donation_amount` returns an array of all donations order by `amount` ascending", :aggregate_failures do
+      expect(Donation.order_by_donation_amount.first).to eq(cooper_alexs)
+      expect(Donation.order_by_donation_amount.last).to eq(gillian_blm)
+    end
+
+    it "`Donation.amount_over_350` returns a collection of all donations whose `amount` is greater than 300" do
+      expect(Donation.amount_over_350).to eq([gillian_blm, drew_hope])
+    end
+
+    it "`Donation.count_of_donations` returns a count of all donations" do
+      expect(Donation.count_of_donations).to eq(41)
+    end
+
+    it "`Donation.donations_to_nonprofit_with_id_of_4` returns an array of all donations with a `nonprofit_id` of 4" do
+      expect(Donation.donations_to_nonprofit_with_id_of_4).to eq([cooper_hope, drew_hope, gillian_hope, rob_hope, steve_hope])
+    end
+
+    it "`Donation.total_dollars_donated` returns the sum of all `amount`s of donations" do
+      expect(Donation.total_dollars_donated).to eq(5192)
+    end
+
+    it "`Donation.donations_by_user_with_id_of_13` returns all donations with a `user_id` of 13" do
+      expect(Donation.donations_by_user_with_id_of_13).to eq([sebastian_alexs, sebastian_blm, sebastian_streetdog])
+    end
+
+  end
 end

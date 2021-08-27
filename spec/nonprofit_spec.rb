@@ -82,4 +82,63 @@ describe Nonprofit do
       expect(bridges.users).to eq([dion, gillian, jon, kurstyn, kyle])
     end
   end
+
+  describe "querying fundamentals" do
+    it "Nonprofit.get_first returns the first nonprofit in the database" do
+      expect(Nonprofit.get_first).to eq(alexs)
+    end
+
+    it "Nonprofit.get_id_of_4 returns the nonprofit with an `id` of 4" do
+      expect(Nonprofit.get_id_of_4).to eq(hope)
+    end
+
+    it "Nonprofit.get_blm returns the nonprofit with the `name` of 'Black Lives Matter'" do
+      expect(Nonprofit.get_blm).to eq(blm)
+    end
+
+    it "Nonprofit.get_last_3 returns a collection of the last 3 nonprofits in the database" do
+      expect(Nonprofit.get_blm).to eq(blm)
+    end
+
+    it "Nonprofit.get_alexs returns the nonprofit with the `name` of 'Alex's Lemonade Stand'" do
+      expect(Nonprofit.get_alexs).to eq(alexs)
+    end
+
+    it "Nonprofit.get_id_of_10 returns the nonprofit with an `id` of 10. If none are found, it should return `nil`." do
+      expect(Nonprofit.get_id_of_10).to eq(nil)
+    end
+
+    it "Nonprofit.get_first_2 returns the first 2 nonprofits in the database" do
+      expect(Nonprofit.get_first_2).to eq([alexs, blm])
+    end
+
+    it "Nonprofit.in_alphabetical_order returns a collection of all nonprofits in alphabetical order by `name`" do
+      expect(Nonprofit.in_alphabetical_order).to eq([alexs, blm, bridges, hope, streetdog])
+    end
+
+    it "Nonprofit.get_amount_of_nonprofits returns the count of nonprofits in the database" do
+      expect(Nonprofit.get_amount_of_nonprofits).to eq(5)
+    end
+
+    it "Nonprofit.only_names returns an array of all the names of the nonprofits" do
+      expect(Nonprofit.only_names).to eq(["Alex's Lemonade Stand", "Black Lives Matter", "Bridges", "H.O.P.E.", "Streetdog Foundation"])
+    end
+
+    it "Nonprofit.reverse_alphabetical_order returns a collection of all nonprofits in reverse alphabetical order by `name`" do
+      expect(Nonprofit.reverse_alphabetical_order).to eq([streetdog, hope, bridges, blm, alexs])
+    end
+
+    it "Nonprofit.only_descriptions returns an array of all the descriptions of the nonprofits" do
+      description_array = [
+        "Alex's Lemonade Stand Foundation is an American pediatric cancer charity founded by Alexandra \"Alex\" Scott, who lived in Pennsylvania and suffered from neuroblastoma.",
+        "The official #BlackLivesMatter Global Network builds power to bring justice, healing, and freedom to Black people across the globe.",
+        "BRIDGES provides students an opportunity to find their voice through unique experiential learning activities that are adventurous, relational and transformative. As a result, participants are empowered to reach across racial and socio-economic divides, are prepared for secondary educational opportunities and careers, and are engaged in civic affairs in their communities.",
+        "Homeless Organizing for Power and Equality (H.O.P.E.) is an organization whose members are exclusively people who are currently experiencing or have formerly experienced homelessness. H.O.P.E. is a voice for the homeless community in Memphis, redefining and challenging people’s ideas about homelessness and bridging the gap between the unsheltered and sheltered communities through grassroots activism, organizing, education, networking, and skills-training.",
+        "Streetdog Foundation rescues, rehabilitates, and re-homes stray and abandoned dogs in Memphis, TN."
+      ]
+
+      expect(Nonprofit.only_descriptions).to eq(description_array)
+    end
+  end
+
 end

@@ -79,4 +79,57 @@ describe User do
       expect(gillian.nonprofits).to eq([alexs, blm, bridges, hope])
     end
   end
+
+  describe "querying fundamentals" do
+    it "`User.get_cooper` returns the user whose `first_name` is 'Cooper'" do
+      expect(User.get_cooper).to eq(cooper)
+    end
+    it "`User.get_first_5` returns the first 5 users in the database" do
+      expect(User.get_first_5).to eq([cooper, dion, drew, erica, gillian])
+    end
+    it "`User.get_nj_user` returns the user with the `territory` of 'NJ'" do
+      expect(User.get_nj_user).to eq(kyle)
+    end
+
+    it "`User.get_id_of_9` returns the user with an `id` of 9" do
+      expect(User.get_id_of_9).to eq(jon)
+    end
+
+    it "`User.get_wenhold` returns the user with the `last_name` of 'Wenhold'" do
+      expect(User.get_wenhold).to eq(gillian)
+    end
+
+    it "`User.get_last` returns the last user in the database" do
+      expect(User.get_last).to eq(steve)
+    end
+
+    it "`User.get_sebastian_kopp` returns the user with the `first_name` of 'Sebastian' and the `last_name` of 'Kopp'" do
+      expect(User.get_sebastian_kopp).to eq(sebastian)
+    end
+
+    it "`User.phl_users` returns a collection of all users with the `territory` of 'PHL'" do
+      expect(User.phl_users).to eq([dion, drew, erica, gillian, gordon, jon, kurstyn, rob, sebastian, steve])
+    end
+
+    it "`User.reverse_alphabetical_by_first_name` returns a collection of all users in reverse alphabetical order by `first_name`" do
+      expect(User.reverse_alphabetical_by_first_name).to eq([steve, sebastian, rob, kyle, kurstyn, jon, jelena, ivan, gordon, gillian, erica, drew, dion, cooper])
+    end
+
+    it "`User.first_5_alphabetical_by_last_name` returns a collection of the first 5 users sorted alphabetically by `last_name`" do
+      expect(User.first_5_alphabetical_by_last_name).to eq([ivan, steve, jelena, rob, jon])
+    end
+
+    it "`User.amount_of_phl_users` returns the amount of users with a `territory` of 'PHL'" do
+      expect(User.amount_of_phl_users).to eq(10)
+    end
+
+    it "`User.unique_territories` returns an array of all the territories of the users (without duplicates)" do
+      expect(User.unique_territories).to eq(["MD", "PHL", "TPA", "HOU", "NJ"])
+    end
+
+    it "`User.non_phl_users` returns an array of all users who do not have a `territory` of 'PHL'" do
+      expect(User.non_phl_users).to eq([cooper, ivan, jelena, kyle])
+    end
+
+  end
 end
